@@ -32,12 +32,4 @@ Powered by Tesseract.js, this extension runs OCR directly in your browser, keepi
 
 But we understand that sometimes, you may need an extra level of precision or need to retain the original format of the image, especially when dealing with content like Python code. For such instances, we provide an option to enable an embedded third-party solution created by Pieces.app. Check out their service at: https://www.codefromscreenshot.com/
 
-All source code for complete transparency can be found on GitHub at: 
-https://github.com/Tshetrim/Image-To-Text-OCR-extension-for-ChatGPT
-
-Join the Discord to share feedback, errors, or just chat:
-https://discord.gg/8hnkBhwTJ5
-
 Disclaimer: Please note, if you opt to use the third-party embedded option, your privacy and data handling will be subject to their policy as this extension is not affiliated with them.
-
-Invest in your productivity today with our Chrome GPT extension, and experience the future of text transcription!
