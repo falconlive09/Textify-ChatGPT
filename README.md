@@ -1,35 +1,29 @@
 # Textify ChatGPT
 
 # Notes Regarding Code: 
-- The content.js file is the content script that has all of the actual logic of the extension in terms of loading and initializing the tesseract worker, injecting the buttons and other UI elements into the ChatGPT page, etc. 
-- The popup.js file connects to the popup.html for configuring the options and saving it to the chrome local storage for the content.js to later retrieve. 
-- The tesseract.min.js file is from Tesseract.js and contains all the code related to the Tesseract engine itself. 
-- As noted in their API, the [Worker.loadLanguage(langs, jobId): Promise
-]([url](https://github.com/naptha/tesseract.js/blob/master/docs/api.md#worker-load-language)) method fetches the trainedData files from their CDNs if its not already in cache and saves it into Chrome's IndexedDB storage. This makes it convienient for users loading languages, but it also means featching and downloading it can take a while for some languages. 
-- The content.js and tesseract.min.js file are specified as content scripts in the manifest v3 file and get auto injected on page refesh by chrome. 
+- The content script, or content.js file, contains all of the code necessary to load and initialize the Tesseract worker, inject buttons and other user interface components into the ChatGPT page, and other tasks. 
+- To configure the settings, the popup.js file connects to the popup.html and saves it to the Chrome local storage, which the content.js file will subsequently access. 
+- All of the code for the Tesseract engine itself is included in the tesseract.min.js file, which is a subdirectory of Tesseract.js. 
+- The [Worker.loadLanguage(langs, jobId): Promise] is mentioned in their API.If the trainedData files aren't already in cache, the ([url](https://github.com/naptha/tesseract.js/blob/master/docs/api.md#worker-load-language)) function retrieves them from respective CDNs and stores them in Chrome's IndexedDB storage. Users will find it convenient as a result to load languages, however featching and for certain languages, the download process may take some time. 
+- The manifest v3 file specifies the content scripts content.js and tesseract.min.js, which are automatically injected by Chrome on page refresh. 
 
 # Important Note due to CSP Restrictions and Regarding Language Support 
-The ChatGPT website finally added CSP restrictions (August 2023) which block fetching language files from Tesseract.js CDNs. What this means is that the 100+ languages there were able to be picked and downloaded on a need basis is no longer easily possible. As a compromise, I picked out a dozen languages that have had the most use and engangement and they now are packed inside the extension, it should cover for more than 95% of usecases. 
+In August 2023, the ChatGPT website finally implemented CSP constraints that prevent language files from Tesseract.js CDNs from being fetched. This implies that it is no longer simple to select and download any of the more than 100 languages as needed. In an attempt to reach a compromise, I selected twelve languages that have had the highest usage and engagement; they are now included in the extension, which should cover over 95% of use cases. 
 
-In addition, I also bundled the worker and core files since they also can no longer be fetched from the CDN at runtime. This means that the total size of the extension has comparatively greatly increased. Fortunately, other than a slower initial download size of the actual extension, performance should remain the same and the extension still works as before. 
-
-Version 0.0.0.7 was the last version with CDN fetching, it is saved on a separate branch or can be referenced through the commit history for anyone that would like to reference that code. It should still work as long as the target website does not have CSP policies blocking external scripts. 
-
-Version 0.0.0.8 and on will bundle the necessary files for the extension to run appropriately. 
-
+Since the worker and core files can no longer be retrieved from the CDN at runtime, I have also packaged them. This indicates that the extension's overall size has significantly risen. Thankfully, aside from the fact that the extension's first download took longer than expected, performance should remain the same and the extension still works as before.
 
 # Product-Description
 Update: Supports 10+ Major Languages! 
 
-This extension was born out of a need for a fast, quick and intuitive way to get text from images into the textbox for ChatGPT. This extension accomplishes this with a great degree of accuracy and average speeds of ~5 seconds or less. 
+The desire for a simple, quick, and speedy method of transferring text from photos into the ChatGPT textbox gave rise to this addon. This extension achieves average speeds of less than 5 seconds and a high degree of precision. 
 
-Now, you don't have to switch between multiple tools just for Optical Character Recognition (OCR). With this extension, you can easily upload an image file or drag and drop it for conversion into text, which will automatically populate your ChatGPT textbox. 
+You may now use one tool for optical character recognition (OCR) instead of switching between numerous ones. This extension makes it simple to upload or drag and drop picture files to convert them to text, which will then automatically fill your ChatGPT textbox. 
 
-Additionally, if you have a screenshot in your clipboard, you can directly paste (Ctrl+V) it into the textbox. Quick, hassle-free, and highly efficient - this extension is built with a focus on speed, user-friendliness, and most importantly, privacy.
+Moreover, you may paste (Ctrl+V) a screenshot that is in your clipboard straight into the textbox. This extension is designed to be quick, easy to use, and extremely effective. It prioritizes speed, user-friendliness, and most importantly, privacy.
 
-For the Tech Savvy:
-Powered by Tesseract.js, this extension runs OCR directly in your browser, keeping your data secure as none of your information leaves your device. All the OCR work is performed locally, ensuring maximum privacy.
+# For the Tech Enthusiast
+This extension, which uses Tesseract.js to power it, does OCR from within your browser, protecting your data because it never leaves your device. Since all OCR work is done locally, the highest level of privacy is guaranteed.
 
-But we understand that sometimes, you may need an extra level of precision or need to retain the original format of the image, especially when dealing with content like Python code. For such instances, we provide an option to enable an embedded third-party solution created by Pieces.app. Check out their service at: https://www.codefromscreenshot.com/
+However, we recognize that, on occasion, you could want an additional degree of accuracy or that you might need to keep the picture in its original format—particularly when working with information like Python code. In certain cases, we provide the ability to activate an integrated third-party solution made by Pieces.app. Visit https://www.codefromscreenshot.com/ to learn more about their offerings.
 
-Disclaimer: Please note, if you opt to use the third-party embedded option, your privacy and data handling will be subject to their policy as this extension is not affiliated with them.
+Disclaimer: Since this extension is not associated with the third-party, please be aware that your privacy and data handling will be subject to their policy if you choose to use the embedded option.
