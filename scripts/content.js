@@ -695,8 +695,6 @@ function addLanguageModal() {
 
 	// Create an information text node with a hyperlink regarding CSP policy change
 	let informationText = document.createElement("p");
-	informationText.innerHTML =
-		"<a target='_blank' rel='noopener noreferrer' href='https://github.com/Tshetrim/Image-To-Text-OCR-extension-for-ChatGPT#important-note-due-to-csp-restrictions-and-regarding-language-support'>🙇‍♂️ Due to reasons outside my control, languages had to be reduced from 100+ to 12 most used languages. Click here to read why.</a>";
 	informationText.style.color = "#0b2754";
 	modalContent.appendChild(informationText);
 
