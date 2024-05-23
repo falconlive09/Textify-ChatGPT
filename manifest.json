@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
-	"name": "Image to Text for ChatGPT",
-	"version": "0.0.1.0",
+	"name": "Textify ChatGPT",
+	"version": "0.0.2.0",
 	"description": "Add OCR Image to Text to ChatGPT",
 	"action": {
 		"default_popup": "popup.html",
@@ -33,7 +33,7 @@
 	],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "imageToTextGPT@tshdev.com"
+			"id": "nealgautam09@gmail.com"
 		}
 	}
 }
